@@ -176,7 +176,7 @@
 //   );
 // }
 
-async function fetchSchools() {
+async function ShowSchools() {
   return (
     <div>
       <h1>Hello Buddy</h1>
