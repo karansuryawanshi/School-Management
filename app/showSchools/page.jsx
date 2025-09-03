@@ -30,7 +30,7 @@ async function fetchSchools() {
 export default async function ShowSchools() {
   const schools = await fetchSchools();
 
-  // console.log("school.image_____", schools[0].image);
+  console.log("school.image_____", schools);
 
   return (
     <div className="min-h-screen bg-[#fffaf7d4] py-8">
