@@ -82,83 +82,86 @@ export default async function ShowSchools() {
 
             {/* Schools Grid */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {schools.map((school) => (
-                <div
-                  key={school.id}
-                  className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-300"
-                >
-                  {/* School Image */}
-                  <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden">
-                    {school.image ? (
-                      <Image
-                        src={
-                          school.image ||
-                          "https://images.unsplash.com/20/cambridge.JPG?q=80&w=1147&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        }
-                        alt={school.name || "No name"}
-                        width={400}
-                        height={300}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-colors duration-300">
-                        <div className="text-center">
-                          <svg
-                            className="w-16 h-16 text-blue-400 mx-auto mb-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1}
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            />
-                          </svg>
-                          <p className="text-blue-500 font-medium">
-                            School Image
+              {schools.map((school) => {
+                if (!school) return null;
+                return (
+                  <div
+                    key={school.id}
+                    className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-300"
+                  >
+                    {/* School Image */}
+                    <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden">
+                      {school.image ? (
+                        <Image
+                          src={
+                            school.image ||
+                            "https://images.unsplash.com/20/cambridge.JPG?q=80&w=1147&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          }
+                          alt={school.name || "No name"}
+                          width={400}
+                          height={300}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-colors duration-300">
+                          <div className="text-center">
+                            <svg
+                              className="w-16 h-16 text-blue-400 mx-auto mb-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1}
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                              />
+                            </svg>
+                            <p className="text-blue-500 font-medium">
+                              School Image
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* School Details */}
+                    <div className="p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 mb-2 line-clamp-2">
+                        {school.name}
+                      </h3>
+
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-start gap-2">
+                          <MapPinned className="text-gray-600" width={13} />
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {school.address}
                           </p>
                         </div>
-                      </div>
-                    )}
-                  </div>
 
-                  {/* School Details */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 mb-2 line-clamp-2">
-                      {school.name}
-                    </h3>
-
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-start gap-2">
-                        <MapPinned className="text-gray-600" width={13} />
-                        <p className="text-sm text-gray-600 line-clamp-2">
-                          {school.address}
-                        </p>
+                        <div className="flex items-center gap-2 ">
+                          <Building className="text-gray-600" width={13} />
+                          <p className="text-sm text-gray-600">{school.city}</p>
+                        </div>
                       </div>
 
-                      <div className="flex items-center gap-2 ">
-                        <Building className="text-gray-600" width={13} />
-                        <p className="text-sm text-gray-600">{school.city}</p>
-                      </div>
-                    </div>
-
-                    {/* Contact Info */}
-                    <div className="pt-4 border-t border-gray-100">
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        {school.contact && (
-                          <div className="flex items-center gap-2">
-                            <Phone width={13} />
-                            <span>{school.contact}</span>
-                          </div>
-                        )}
-                        {school.state && <Badge>{school.state}</Badge>}
+                      {/* Contact Info */}
+                      <div className="pt-4 border-t border-gray-100">
+                        <div className="flex items-center justify-between text-xs text-gray-500">
+                          {school.contact && (
+                            <div className="flex items-center gap-2">
+                              <Phone width={13} />
+                              <span>{school.contact}</span>
+                            </div>
+                          )}
+                          {school.state && <Badge>{school.state}</Badge>}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Load More Button (if needed in future) */}
