@@ -85,13 +85,11 @@ export default async function ShowSchools() {
                   <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden">
                     {school.image ? (
                       <Image
-                        // src={
-                        //   school.image.startsWith("/")
-                        //     ? school.image
-                        //     : `/${school.image}`
-                        // }
-                        src={school.image}
-                        alt={school.name}
+                        src={
+                          school.image ||
+                          "https://images.unsplash.com/20/cambridge.JPG?q=80&w=1147&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        }
+                        alt={school.name || "No name"}
                         width={400}
                         height={300}
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
