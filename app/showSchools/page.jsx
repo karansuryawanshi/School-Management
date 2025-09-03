@@ -7,7 +7,11 @@ import { MapPinned } from "lucide-react";
 import { Building } from "lucide-react";
 
 async function fetchSchools() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+
   const res = await fetch(`${baseUrl}/api/schools`, { cache: "no-store" });
 
   if (!res.ok) {
@@ -26,6 +30,8 @@ async function fetchSchools() {
 
 export default async function ShowSchools() {
   const schools = await fetchSchools();
+
+  console.log("school.image_____", schools[0].image);
 
   return (
     <div className="min-h-screen bg-[#fffaf7d4] py-8">
