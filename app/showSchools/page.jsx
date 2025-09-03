@@ -81,7 +81,7 @@ export default async function ShowSchools() {
             </div>
 
             {/* Schools Grid */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {/* <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {schools.map((school) => {
                 if (!school) return null;
                 return (
@@ -89,7 +89,6 @@ export default async function ShowSchools() {
                     key={school.id}
                     className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-300"
                   >
-                    {/* School Image */}
                     <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden">
                       {school.image ? (
                         <Image
@@ -126,7 +125,6 @@ export default async function ShowSchools() {
                       )}
                     </div>
 
-                    {/* School Details */}
                     <div className="p-6">
                       <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 mb-2 line-clamp-2">
                         {school.name}
@@ -146,7 +144,6 @@ export default async function ShowSchools() {
                         </div>
                       </div>
 
-                      {/* Contact Info */}
                       <div className="pt-4 border-t border-gray-100">
                         <div className="flex items-center justify-between text-xs text-gray-500">
                           {school.contact && (
@@ -162,9 +159,8 @@ export default async function ShowSchools() {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
 
-            {/* Load More Button (if needed in future) */}
             <div className="text-center mt-12">
               <div className="text-sm text-gray-500">
                 {schools.length === 1
