@@ -85,11 +85,12 @@ export default async function ShowSchools() {
                   <div className="aspect-w-4 aspect-h-3 bg-gray-200 overflow-hidden">
                     {school.image ? (
                       <Image
-                        src={
-                          school.image.startsWith("/")
-                            ? school.image
-                            : `/${school.image}`
-                        }
+                        // src={
+                        //   school.image.startsWith("/")
+                        //     ? school.image
+                        //     : `/${school.image}`
+                        // }
+                        src={school.image}
                         alt={school.name}
                         width={400}
                         height={300}

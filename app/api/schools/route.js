@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getPool } from "../../../lib/db";
 import path from "path";
 import { put } from "@vercel/blob";
-import { promises as fs } from "fs";
+// import { promises as fs } from "fs";
 
 export const runtime = "nodejs";
 
