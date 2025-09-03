@@ -191,8 +191,8 @@ export default function Home() {
             <span className="block">Join our educational community today.</span>
           </h2>
           <p className="mt-4 text-lg leading-6 text-blue-200">
-            Whether you're adding your institution or looking for schools, we've
-            got you covered.
+            Whether you are adding your institution or looking for schools, we
+            have got you covered.
           </p>
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
