@@ -176,7 +176,7 @@
 //   );
 // }
 
-async function ShowSchools() {
+export default async function ShowSchools() {
   return (
     <div>
       <h1>Hello Buddy</h1>
