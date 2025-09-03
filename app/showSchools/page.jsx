@@ -5,11 +5,33 @@ import Link from "next/link";
 import { Phone } from "lucide-react";
 import { MapPinned } from "lucide-react";
 import { Building } from "lucide-react";
+import { headers } from "next/headers";
+
+// async function fetchSchools() {
+//   const baseUrl = process.env.VERCEL_URL
+//     ? `https://${process.env.VERCEL_URL}`
+//     : "http://localhost:3000";
+
+//   const res = await fetch(`${baseUrl}/api/schools`, { cache: "no-store" });
+
+//   if (!res.ok) {
+//     console.error("Failed to fetch schools:", res.status, res.statusText);
+//     return [];
+//   }
+
+//   try {
+//     const json = await res.json();
+//     return json?.data || [];
+//   } catch (err) {
+//     console.error("Error parsing JSON:", err);
+//     return [];
+//   }
+// }
 
 async function fetchSchools() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
+  const host = headers().get("host");
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  const baseUrl = `${protocol}://${host}`;
 
   const res = await fetch(`${baseUrl}/api/schools`, { cache: "no-store" });
 
@@ -18,14 +40,10 @@ async function fetchSchools() {
     return [];
   }
 
-  try {
-    const json = await res.json();
-    return json?.data || [];
-  } catch (err) {
-    console.error("Error parsing JSON:", err);
-    return [];
-  }
+  const json = await res.json();
+  return json?.data || [];
 }
+
 
 export default async function ShowSchools() {
   const schools = await fetchSchools();
