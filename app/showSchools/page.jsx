@@ -7,27 +7,6 @@ import { MapPinned } from "lucide-react";
 import { Building } from "lucide-react";
 import { headers } from "next/headers";
 
-// async function fetchSchools() {
-//   const baseUrl = process.env.VERCEL_URL
-//     ? `https://${process.env.VERCEL_URL}`
-//     : "http://localhost:3000";
-
-//   const res = await fetch(`${baseUrl}/api/schools`, { cache: "no-store" });
-
-//   if (!res.ok) {
-//     console.error("Failed to fetch schools:", res.status, res.statusText);
-//     return [];
-//   }
-
-//   try {
-//     const json = await res.json();
-//     return json?.data || [];
-//   } catch (err) {
-//     console.error("Error parsing JSON:", err);
-//     return [];
-//   }
-// }
-
 async function fetchSchools() {
   const host = headers().get("host");
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
@@ -44,16 +23,12 @@ async function fetchSchools() {
   return json?.data || [];
 }
 
-
 export default async function ShowSchools() {
   const schools = await fetchSchools();
-
-  console.log("school.image_____", schools);
 
   return (
     <div className="min-h-screen bg-[#fffaf7d4] py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Discover Schools
@@ -71,7 +46,6 @@ export default async function ShowSchools() {
           </div>
         </div>
 
-        {/* Schools Grid */}
         {schools.length === 0 ? (
           <div className="text-center py-12">
             <div className=" mx-auto h-24 w-24 text-gray-400 mb-4">
@@ -89,7 +63,6 @@ export default async function ShowSchools() {
           </div>
         ) : (
           <>
-            {/* Results Count */}
             <div className="mb-6">
               <p className="text-sm text-gray-700">
                 Showing <span className="font-medium">{schools.length}</span>{" "}
@@ -97,7 +70,6 @@ export default async function ShowSchools() {
               </p>
             </div>
 
-            {/* Schools Grid */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {schools.map((school) => {
                 if (!school) return null;
@@ -119,22 +91,12 @@ export default async function ShowSchools() {
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-colors duration-300">
+                        <div className="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 flex items-center justify-center group-hover:from-neutral-200 group-hover:to-neutral-300 transition-colors duration-300">
                           <div className="text-center">
-                            <svg
-                              className="w-16 h-16 text-blue-400 mx-auto mb-2"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1}
-                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                              />
-                            </svg>
-                            <p className="text-blue-500 font-medium">
+                            <p className="w-16 h-16 text-neutral-700 mx-auto mb-2">
+                              <Building size={70} />
+                            </p>
+                            <p className="text-neutral-700 font-medium">
                               School Image
                             </p>
                           </div>

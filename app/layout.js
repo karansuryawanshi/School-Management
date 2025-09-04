@@ -2,8 +2,6 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-// import { motion } from "framer-motion";
-
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

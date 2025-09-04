@@ -6,12 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { ImagePlus } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
+import { Check } from "lucide-react";
+import { Ban } from "lucide-react";
 
 export default function AddSchool() {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -40,6 +45,8 @@ export default function AddSchool() {
     }
   };
 
+  const imageFile = watch("image");
+
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-[#fffaf7d4]">
       <div className="max-w-3xl mx-auto">
@@ -53,10 +60,8 @@ export default function AddSchool() {
           </p>
         </div>
 
-        {/* Form Card */}
         <div className="bg-white shadow-xl rounded-lg overflow-hidden">
           <div className="px-6 py-8 sm:px-8">
-            {/* Server Message */}
             <AnimatePresence mode="wait">
               {serverMsg && (
                 <motion.div
@@ -74,29 +79,13 @@ export default function AddSchool() {
                   <div className="flex">
                     <div className="flex-shrink-0">
                       {serverMsg.type === "success" ? (
-                        <svg
-                          className="h-5 w-5 text-green-400"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                        <p className="h-5 w-5 text-green-400">
+                          <Check />
+                        </p>
                       ) : (
-                        <svg
-                          className="h-5 w-5 text-red-400"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                        <p className="h-5 w-5 text-red-400">
+                          <Ban />
+                        </p>
                       )}
                     </div>
                     <div className="ml-3">
@@ -149,7 +138,6 @@ export default function AddSchool() {
                 </AnimatePresence>
               </div>
 
-              {/* Address */}
               <div>
                 <label
                   htmlFor="address"
@@ -184,7 +172,6 @@ export default function AddSchool() {
                 </AnimatePresence>
               </div>
 
-              {/* City and State */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
                   <label
@@ -256,7 +243,6 @@ export default function AddSchool() {
                 </div>
               </div>
 
-              {/* Contact and Email */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
                   <label
@@ -281,16 +267,15 @@ export default function AddSchool() {
                     placeholder="Enter 10-digit contact number"
                   />
                   <AnimatePresence>
-                    {errors.contact && (
+                    {errors?.contact && (
                       <motion.p
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        whileInView={{ opacity: 0, x: -10 }}
                         exit={{ opacity: 0, x: -10 }}
                         transition={{ duration: 0.2 }}
                         className="mt-1 text-sm text-red-600"
                       >
-                        {errors.contact.message}
+                        {errors?.contact?.message}
                       </motion.p>
                     )}
                   </AnimatePresence>
@@ -331,7 +316,6 @@ export default function AddSchool() {
                 </div>
               </div>
 
-              {/* Image Upload */}
               <div>
                 <label
                   htmlFor="image"
@@ -339,22 +323,10 @@ export default function AddSchool() {
                 >
                   School Image *
                 </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-neutral-900 transition-colors">
+                <div className="mt-1 flex flex-col justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-neutral-900 transition-colors">
                   <div className="space-y-1 text-center">
-                    <svg
-                      className="mx-auto h-12 w-12 text-gray-400"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 48 48"
-                    >
-                      <path
-                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <div className="flex text-sm text-gray-600">
+                    <ImagePlus className="mx-auto text-neutral-600" size={60} />
+                    <div className="flex items-center justify-center text-sm text-gray-600">
                       <label
                         htmlFor="image"
                         className="relative cursor-pointer bg-white rounded-md font-medium text-neutral-600 hover:text-neutral-900 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-neutral-800"
@@ -376,6 +348,12 @@ export default function AddSchool() {
                       PNG, JPG, JPEG up to 10MB
                     </p>
                   </div>
+                  {imageFile && imageFile.length > 0 && (
+                    <p className="mt-2 text-sm text-gray-700 text-center">
+                      Selected file:{" "}
+                      <span className="font-medium">{imageFile[0].name}</span>
+                    </p>
+                  )}
                 </div>
                 <AnimatePresence>
                   {errors.image && (
@@ -392,7 +370,6 @@ export default function AddSchool() {
                 </AnimatePresence>
               </div>
 
-              {/* Submit Button */}
               <div className="pt-6 flex items-center justify-center">
                 <Button
                   variant={"default"}
@@ -401,26 +378,9 @@ export default function AddSchool() {
                 >
                   {isSubmitting ? (
                     <>
-                      <svg
-                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                      </svg>
+                      <p className="animate-spin text-white">
+                        <LoaderCircle />
+                      </p>
                       Adding School...
                     </>
                   ) : (

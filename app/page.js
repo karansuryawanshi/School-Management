@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Plus } from "lucide-react";
+import { Search } from "lucide-react";
 
 export default function Home() {
   const containerVariants = {
@@ -11,7 +13,7 @@ export default function Home() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // delay between children
+        staggerChildren: 0.2,
       },
     },
   };
@@ -23,7 +25,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#fffaf7d4]">
-      {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -81,7 +82,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Features Section */}
       <div className="py-12 bg-[#fffaf7d4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -117,19 +117,9 @@ export default function Home() {
               <motion.div variants={itemVariants} className="relative">
                 <dt>
                   <div className="absolute flex items-center justify-center h-12 w-12 rounded-md fancy-icon-bg text-white">
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
+                    <p className="h-6 w-6">
+                      <Plus />
+                    </p>
                   </div>
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
                     Easy School Registration
@@ -144,19 +134,9 @@ export default function Home() {
               <motion.div variants={itemVariants} className="relative">
                 <dt>
                   <div className="absolute flex items-center justify-center h-12 w-12 rounded-md fancy-icon-bg text-white">
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
+                    <p className="h-6 w-6">
+                      <Search />
+                    </p>
                   </div>
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
                     School Discovery

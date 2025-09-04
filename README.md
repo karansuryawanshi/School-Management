@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# School Management System
 
-## Getting Started
+A full-stack **School Management System** built with **Next.js 14 (App Router)**, **MySQL (Aiven Cloud)**, and **Vercel Blob Storage**.  
+This project allows adding and viewing schools with details like name, address, contact, state, and images.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- Add new schools with details (name, address, city, state, contact, email, image).
+- Display all schools in a responsive grid.
+- Image uploads using **Vercel Blob Storage**.
+- MySQL database hosted on **Aiven Cloud**.
+- Secure SSL connection with DB (self-signed cert handling).
+- Deployed on **Vercel**.
+
+---
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 (App Router) + TailwindCSS
+- **Database**: MySQL (Aiven Cloud)
+- **File Storage**: Vercel Blob Storage
+- **UI Components**: ShadCN + Lucide Icons
+
+---
+
+## Project Structure
+
+```
+app/
+├── api/
+│ └── schools/
+│ └── route.js # API endpoints (GET, POST)
+├── addSchool/ # Add School page
+├── showSchools/ # Display Schools page
+├── layout.js
+└── page.js # Home page
+lib/
+└── db.js # MySQL connection pool
+components/
+└── ui/ # Reusable UI components
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the project root:
 
-## Learn More
+```env
+# MySQL (Aiven)
+DB_HOST=mysql-xxxxxx-moderncoe-xxx.aivencloud.com
+DB_PORT=28454
+DB_USER=avnadmin
+DB_PASSWORD=your-db-password
+DB_NAME=defaultdb
 
-To learn more about Next.js, take a look at the following resources:
+# SSL Certificate (base64 encoded PEM)
+DB_CA=MIIC....<your-base64-encoded-cert>....Q==
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Vercel Blob Storage
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_xxxxxxxxxxxxxxxxxxx
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Setup Instructions
 
-## Deploy on Vercel
+#### 1. Clone Repo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+git clone https://github.com/your-username/school-management-system.git
+cd school-management-system
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### 2. Install Dependencies
+
+```
+npm install
+```
+
+#### 3. Setup Database
+
+- Import the schema into MySQL:
+
+```
+CREATE TABLE schools (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  ...
+);
+```
+
+#### 4. Run Locally
+
+```
+npm run dev
+```
+
+App will be available at → http://localhost:3000
+
+#### 4. Deploy on Vercel
+
+- Push code to GitHub.
+
+- Import repo in Vercel
+
+- Add all environment variables in Vercel dashboard.
+
+- Deploy
+
+## Author
+
+`Karan Suryawanshi`
+
+## License
+
+This project is licensed under the MIT License.
